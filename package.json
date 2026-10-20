@@ -1,7 +1,7 @@
 {
   "name": "dsh-lantai",
   "version": "0.2.0",
-  "description": "兰台·簿 (lantai) — a ledger for what your agent learned: audit a skill library for contradictions, islands and rot, gate what gets written, and archive instead of deleting.",
+  "description": "兰台·簿 (lantai) — a ledger for what your agent learned: health-check a skill library for contradictions, islands and rot, gate what gets written, and archive instead of deleting.",
   "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
