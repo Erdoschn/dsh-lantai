@@ -1,7 +1,7 @@
 {
   "name": "dsh-lantai",
-  "version": "0.1.2",
-  "description": "兰台 (lantai) — distill a session's hard-won experience into a durable DeepSeek Harness skill, through a gate that rejects vague advice, duplicates and permission-escalating instructions.",
+  "version": "0.2.0",
+  "description": "兰台·簿 (lantai) — a ledger for what your agent learned: audit a skill library for contradictions, islands and rot, gate what gets written, and archive instead of deleting.",
   "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
@@ -20,9 +20,11 @@
     "deepseek-harness",
     "dsh",
     "dsh-plugin",
-    "skill",
-    "memory",
-    "distillation"
+    "skills",
+    "agent-memory",
+    "audit",
+    "knowledge-graph",
+    "lint"
   ],
   "engines": {
     "node": ">=20.11"

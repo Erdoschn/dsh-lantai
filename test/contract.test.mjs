@@ -1,4 +1,4 @@
-/**
+﻿/**
  * The contract test.
  *
  * Two failures motivated this file:
@@ -23,7 +23,7 @@ const config = { skillRoot: '/tmp/lantai-contract', allowReplace: false };
 const tools = buildTools({ config });
 
 const TOOL_NAME = /^[a-z][a-z0-9_]*$/;
-const EXPECTED_TOOLS = ['skill_distill', 'skill_catalog', 'skill_audit', 'skill_attest', 'skill_retire'];
+const EXPECTED_TOOLS = ['skill_distill', 'skill_catalog', 'skill_audit', 'skill_attest', 'skill_retire', 'skill_conflicts', 'skill_graph', 'skill_health'];
 
 test('every tool name is ascii snake_case and not reserved', () => {
   const names = new Set();
@@ -98,7 +98,7 @@ test('registered tools validate argument types', () => {
 
 test('a misconfigured plugin still registers tools that refuse at call time', () => {
   const broken = buildTools({ config, problems: ['"skillRoot" 必须是非空路径字符串'] });
-  assert.equal(broken.length, 5);
+  assert.equal(broken.length, 8);
   return assert.rejects(broken[0].execute({ name: 'a', description: 'b', body: 'c' }), /配置有误/);
 });
 
