@@ -1,6 +1,6 @@
 {
   "name": "dsh-lantai",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "兰台 (lantai) — distill a session's hard-won experience into a durable DeepSeek Harness skill, through a gate that rejects vague advice, duplicates and permission-escalating instructions.",
   "license": "MIT",
   "type": "module",
