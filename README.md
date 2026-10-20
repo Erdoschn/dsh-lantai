@@ -123,7 +123,7 @@ The interval is decided by **how many times the skill has been reviewed**.
 Past 180 days overdue, the health check recommends archiving — **but it never deletes
 on its own.**
 
-## 归档（删除）
+## 归档（可撤回的删除）
 
 ## Archive, not delete (归档)
 
