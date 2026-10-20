@@ -1,0 +1,16 @@
+# 兰台 · one row, one plugin.
+#
+# The name is a place: 兰台 was the Han-dynasty archive where Ban Gu compiled the
+# Book of Han. It keeps the record; it does not issue orders.
+#
+# `skillRoot` must be a root the filesystem skill provider scans — by default the
+# user-level `~/.dsh/skills`, so a distilled skill reaches every project.
+
+- insert:
+    - id: lantai
+      name: 'dsh-lantai'
+      config:
+        skillRoot: '~/.dsh/skills'
+        # Overwriting an existing skill additionally requires an explicit
+        # `replace: true` on the call. Keep this false unless you mean it.
+        allowReplace: false

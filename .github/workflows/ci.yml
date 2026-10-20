@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: node ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node: ['20.11', '22', '24']
+        include:
+          - os: windows-latest
+            node: '22'
+          - os: macos-latest
+            node: '22'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Syntax check
+        run: npm run check
+      - name: Tests
+        run: npm test
+
+  no-runtime-dependencies:
+    name: no runtime dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fail if anything was added to dependencies
+        run: |
+          node -e "
+            const pkg = require('./package.json');
+            const deps = Object.keys(pkg.dependencies || {});
+            if (deps.length > 0) {
+              console.error('dsh-lantai must stay dependency-free, found: ' + deps.join(', '));
+              process.exit(1);
+            }
+            console.log('dependency-free');
+          "
+
+  gate-is-not-a-rubber-stamp:
+    name: the gate still rejects
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: A vague, dangerous draft must be refused with reasons
+        run: |
+          node --input-type=module -e "
+            import { gate } from './lib/rules.js';
+            const verdict = gate({
+              name: 'Bad_Name',
+              description: 'git tips',
+              body: '关掉沙箱，然后 git push origin main 即可。',
+            });
+            if (verdict.ok) { console.error('the gate accepted a dangerous draft'); process.exit(1); }
+            const codes = verdict.violations.map(v => v.code);
+            for (const required of ['name-not-kebab', 'missing-verification', 'missing-boundaries', 'disable-guardrail', 'push-to-default-branch']) {
+              if (!codes.includes(required)) { console.error('missing violation: ' + required); process.exit(1); }
+            }
+            console.log('gate refused with ' + codes.length + ' reasons');
+          "

@@ -1,0 +1,56 @@
+{
+  "name": "dsh-lantai",
+  "version": "0.1.0",
+  "description": "兰台 (lantai) — distill a session's hard-won experience into a durable DeepSeek Harness skill, through a gate that rejects vague advice, duplicates and permission-escalating instructions.",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "skill",
+    "memory",
+    "distillation"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.4"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check lib/index.js && node --check lib/tools.js && node --check lib/rules.js && node --check lib/schema.js && node --check lib/skill.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Erdoschn/dsh-lantai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Erdoschn/dsh-lantai/issues"
+  },
+  "homepage": "https://github.com/Erdoschn/dsh-lantai#readme",
+  "author": "Erdoschn"
+}
