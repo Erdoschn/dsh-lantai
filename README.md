@@ -31,8 +31,8 @@ Agent 每次开新对话都是完全失忆的。今天为了绕一个环境坑�
 ## 60 秒上手
 
 ```console
-# 1. 装进 profile（本机路径或 npm 包都行）
-dsh plugin install /path/to/dsh-lantai
+# 1. 装进 profile
+dsh plugin install dsh-lantai
 
 # 2. 在 profile 里配一行（默认已写进 cordis.patch.yml）
 ```
